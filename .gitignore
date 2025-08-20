@@ -1,0 +1,26 @@
+# Arquivos compilados Java
+*.class
+bin/
+
+# Arquivos de dados (opcional - você pode querer incluí-los)
+# *.data
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Logs
+*.log
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# Arquivos de backup
+*~
+*.bak 
