@@ -1,7 +1,7 @@
 # Sistema de Eventos da Cidade
 
 ## Descrição
-Sistema desenvolvido em Java para cadastro e gerenciamento de eventos da cidade, permitindo que usuários se cadastrem, criem eventos e participem de atividades locais.
+Sistema desenvolvido em Java para cadastro e gerenciamento de eventos da cidade, permitindo que usuários se cadastrem, criem eventos e participem de eventos locais.
 
 ## Funcionalidades
 
@@ -122,7 +122,7 @@ O sistema cria automaticamente os seguintes arquivos:
 
 ## Desenvolvedor
 
-Sistema desenvolvido como atividade prática da disciplina de Programação Orientada a Objetos, demonstrando competências em:
+Sistema desenvolvido demonstrando competências em:
 - Análise e design de sistemas
 - Implementação de padrões arquiteturais
 - Desenvolvimento de aplicações Java
@@ -131,4 +131,4 @@ Sistema desenvolvido como atividade prática da disciplina de Programação Orie
 
 ## Licença
 
-Este projeto é de uso educacional e acadêmico. 
+Este projeto é de uso livre para fins educacionais e comerciais. 
