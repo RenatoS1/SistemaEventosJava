@@ -1,1 +1,238 @@
- 
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                    DIAGRAMA DE CLASSES - SISTEMA DE EVENTOS                                │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                              MODEL                                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                      User                                                                    │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ - id: String                                                                                                │
+│ - name: String                                                                                              │
+│ - email: String                                                                                             │
+│ - phone: String                                                                                             │
+│ - city: String                                                                                              │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + User(id: String, name: String, email: String, phone: String, city: String)                               │
+│ + getId(): String                                                                                           │
+│ + setId(id: String): void                                                                                   │
+│ + getName(): String                                                                                         │
+│ + setName(name: String): void                                                                               │
+│ + getEmail(): String                                                                                        │
+│ + setEmail(email: String): void                                                                             │
+│ + getPhone(): String                                                                                        │
+│ + setPhone(phone: String): void                                                                             │
+│ + getCity(): String                                                                                         │
+│ + setCity(city: String): void                                                                               │
+│ + toString(): String                                                                                        │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                      Event                                                                   │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ - id: String                                                                                                │
+│ - name: String                                                                                              │
+│ - address: String                                                                                           │
+│ - category: String                                                                                          │
+│ - dateTime: LocalDateTime                                                                                   │
+│ - description: String                                                                                       │
+│ - participants: List<String>                                                                                │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + Event(id: String, name: String, address: String, category: String,                                        │
+│         dateTime: LocalDateTime, description: String)                                                       │
+│ + getId(): String                                                                                           │
+│ + setId(id: String): void                                                                                   │
+│ + getName(): String                                                                                         │
+│ + setName(name: String): void                                                                               │
+│ + getAddress(): String                                                                                      │
+│ + setAddress(address: String): void                                                                         │
+│ + getCategory(): String                                                                                     │
+│ + setCategory(category: String): void                                                                       │
+│ + getDateTime(): LocalDateTime                                                                              │
+│ + setDateTime(dateTime: LocalDateTime): void                                                                │
+│ + getDescription(): String                                                                                  │
+│ + setDescription(description: String): void                                                                 │
+│ + getParticipants(): List<String>                                                                           │
+│ + addParticipant(userId: String): void                                                                      │
+│ + removeParticipant(userId: String): void                                                                   │
+│ + isParticipating(userId: String): boolean                                                                  │
+│ + isHappeningNow(): boolean                                                                                 │
+│ + hasPassed(): boolean                                                                                      │
+│ + toString(): String                                                                                        │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   EventCategory (ENUM)                                                      │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ - displayName: String                                                                                       │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ FESTA("Festa")                                                                                              │
+│ SHOW("Show")                                                                                                │
+│ EVENTO_ESPORTIVO("Evento Esportivo")                                                                        │
+│ PALESTRA("Palestra")                                                                                        │
+│ WORKSHOP("Workshop")                                                                                        │
+│ EXPOSICAO("Exposição")                                                                                      │
+│ TEATRO("Teatro")                                                                                            │
+│ CINEMA("Cinema")                                                                                            │
+│ OUTROS("Outros")                                                                                            │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + EventCategory(displayName: String)                                                                        │
+│ + toString(): String                                                                                        │
+│ + fromString(text: String): EventCategory                                                                   │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                              DAO                                                           │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                     UserDAO                                                                  │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ - FILE_PATH: String = "users.data"                                                                          │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + saveUsers(users: List<User>): void                                                                        │
+│ + loadUsers(): List<User>                                                                                   │
+│ - serializeUser(user: User): String                                                                         │
+│ - deserializeUser(line: String): User                                                                       │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                    EventDAO                                                                  │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ - FILE_PATH: String = "events.data"                                                                         │
+│ - formatter: DateTimeFormatter                                                                              │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + saveEvents(events: List<Event>): void                                                                     │
+│ + loadEvents(): List<Event>                                                                                 │
+│ - serializeEvent(event: Event): String                                                                      │
+│ - deserializeEvent(line: String): Event                                                                     │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                             SERVICE                                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   UserService                                                                │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ - users: List<User>                                                                                         │
+│ - userDAO: UserDAO                                                                                          │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + UserService()                                                                                             │
+│ + addUser(name: String, email: String, phone: String, city: String): void                                  │
+│ + getUserById(id: String): User                                                                             │
+│ + getUserByEmail(email: String): User                                                                       │
+│ + getAllUsers(): List<User>                                                                                 │
+│ + updateUser(id: String, name: String, email: String, phone: String, city: String): boolean                │
+│ - generateUserId(): String                                                                                  │
+│ - saveUsers(): void                                                                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                  EventService                                                                │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ - events: List<Event>                                                                                       │
+│ - eventDAO: EventDAO                                                                                        │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + EventService()                                                                                            │
+│ + addEvent(name: String, address: String, category: String, dateTime: LocalDateTime, description: String): void │
+│ + getAllEvents(): List<Event>                                                                               │
+│ + getEventsByCategory(category: String): List<Event>                                                        │
+│ + getUpcomingEvents(): List<Event>                                                                          │
+│ + getHappeningNowEvents(): List<Event>                                                                      │
+│ + getPastEvents(): List<Event>                                                                              │
+│ + getEventById(id: String): Event                                                                           │
+│ + participateInEvent(eventId: String, userId: String): boolean                                              │
+│ + cancelParticipation(eventId: String, userId: String): boolean                                             │
+│ + getUserEvents(userId: String): List<Event>                                                                │
+│ - generateEventId(): String                                                                                 │
+│ - saveEvents(): void                                                                                        │
+│ + getAvailableCategories(): List<String>                                                                   │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                            CONTROLLER                                                       │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 EventController                                                              │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ - eventService: EventService                                                                                │
+│ - userService: UserService                                                                                  │
+│ - scanner: Scanner                                                                                          │
+│ - formatter: DateTimeFormatter                                                                              │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + EventController(eventService: EventService, userService: UserService)                                     │
+│ + showMainMenu(): void                                                                                      │
+│ - registerUser(): void                                                                                      │
+│ - registerEvent(): void                                                                                     │
+│ - consultEvents(): void                                                                                     │
+│ - participateInEvent(): void                                                                                │
+│ - cancelParticipation(): void                                                                               │
+│ - showUserEvents(): void                                                                                    │
+│ - showHappeningNowEvents(): void                                                                            │
+│ - showPastEvents(): void                                                                                    │
+│ - parseDateTime(dateStr: String, timeStr: String): LocalDateTime                                            │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                              Main                                                           │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + main(args: String[]): void                                                                                │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                    RELACIONAMENTOS                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+Main ──► EventController
+EventController ──► EventService
+EventController ──► UserService
+EventService ──► EventDAO
+EventService ──► EventCategory
+UserService ──► UserDAO
+EventDAO ──► Event
+UserDAO ──► User
+Event ──► List<String> (participants)
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                    PADRÕES ARQUITETURAIS                                                    │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+• MVC (Model-View-Controller)
+  - Model: User, Event, EventCategory
+  - View: Console (via Scanner)
+  - Controller: EventController
+
+• DAO (Data Access Object)
+  - UserDAO: Persistência de usuários
+  - EventDAO: Persistência de eventos
+
+• Service Layer
+  - UserService: Lógica de negócio para usuários
+  - EventService: Lógica de negócio para eventos
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                    PERSISTÊNCIA                                                            │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+• Arquivo: users.data
+  - Formato: id|nome|email|telefone|cidade
+
+• Arquivo: events.data
+  - Formato: id|nome|endereco|categoria|dataHora|descricao|participantes
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                    FUNCIONALIDADES                                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+1. Cadastro de Usuários
+2. Cadastro de Eventos
+3. Consulta de Eventos (todos, por categoria, próximos)
+4. Participação em Eventos
+5. Cancelamento de Participação
+6. Visualização de Eventos do Usuário
+7. Eventos Acontecendo Agora
+8. Histórico de Eventos Passados 
